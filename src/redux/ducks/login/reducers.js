@@ -10,7 +10,12 @@ export default function reducer(state = INITIAL_STATE, { type, payload }) {
   case t.TOGGLE_POPUP:
     return {
       ...state,
-      userNamePopupOpen: payload,
+      loginPopupOpen: payload,
+    };
+  case t.SET_LOGIN:
+    return {
+      ...state,
+      isLogged: payload,
     };
   default:
     return state;

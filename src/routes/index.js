@@ -4,13 +4,13 @@ import {
   BrowserRouter,
 } from 'react-router-dom';
 
-import { PATHS } from '../constants';
+import { PATHS } from '@Constants';
+
+import HomePage from '@Pages/Home';
+import SignUpPage from '@Pages/SignUp';
 
 import Private from './private';
 import Public from './public';
-
-import HomePage from '../pages/Home';
-import SignUpPage from '../pages/SignUp';
 
 const Routes = () => (
   <BrowserRouter>

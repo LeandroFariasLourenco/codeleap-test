@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import validateSession from '../../utils/validateSession';
-import { PATHS } from '../../constants';
+import validateSession from '@Utils/validateSession';
+import { PATHS } from '@Constants';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

@@ -1,4 +1,4 @@
-import { USERSESSION } from '../../constants';
+import { USERSESSION } from '@Constants';
 
 const validateSession = () => !!sessionStorage.getItem(USERSESSION);
 

@@ -9,7 +9,8 @@
       "@Resources/*": ["./src/resources/*"],
       "@Redux/*": ["./src/redux/*"],
       "@Actions/*": ["./src/actions/*"],
-      "@Theme/*": ["./src/theme/*"]
+      "@Style/*": ["./src/style/*"],
+      "@Constants/*": ["./src/constants/*"]
     }
   },
 }

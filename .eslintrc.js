@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   env: {
     browser: true,
+    commonjs: true,
     es2020: true,
   },
   extends: [
@@ -15,12 +16,13 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
   ],
+  parser: 'babel-eslint',
   parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 11,
-    sourceType: 'module',
   },
   plugins: [
     'react',
@@ -36,7 +38,7 @@ module.exports = {
     'import/resolver': {
       'babel-module': {},
       node: {
-        paths: [path.resolve(__dirname, 'src')],
+        paths: [path.resolve(__dirname)],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
