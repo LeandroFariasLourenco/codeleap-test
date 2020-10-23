@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { rem } from 'polished';
 
 export default createGlobalStyle`
   * {
@@ -10,6 +11,13 @@ export default createGlobalStyle`
   input,
   button {
     outline: none;
+  }
+
+  input {
+    &::placeholder {
+      font-size: ${rem(14)};
+      color: #ccc;
+    }
   }
 
   button {

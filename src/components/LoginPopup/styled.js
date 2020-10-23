@@ -50,11 +50,6 @@ export const Input = styled.input`
   padding: ${rem(6)} ${rem(11)};
   border-radius: ${rem(4)};
   width: 100%;
-
-  &::placeholder {
-    font-size: ${rem(14)};
-    color: #ccc;
-  }
 `;
 
 export const LoginForm = styled.form`

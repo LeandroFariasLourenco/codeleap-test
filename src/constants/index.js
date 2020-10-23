@@ -3,4 +3,6 @@ export const PATHS = {
   SIGNUP: '/signup',
 };
 
-export const USERSESSION = 'isLogged';
+export const STORAGE_KEYS = {
+  userSession: 'userNickName',
+};
