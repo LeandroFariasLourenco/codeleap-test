@@ -1,12 +1,14 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
+import Popup from 'reactjs-popup';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 
 import { setLogin } from '@Redux/ducks/login';
 
-import { STORAGE_KEYS, PATHS } from '@Constants';
+import { PATHS } from '@Constants';
 
 import * as S from './styled';
 
@@ -15,6 +17,7 @@ const LoginPopup = ({
 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [mount, setMount] = useState(false);
 
   const {
     register,
@@ -27,44 +30,63 @@ const LoginPopup = ({
     },
   });
 
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
   const onSubmit = ({ userName }) => {
-    dispatch(setLogin(true));
-    sessionStorage.setItem(STORAGE_KEYS.userSession, userName);
+    dispatch(setLogin({
+      isLogged: true,
+      userName,
+    }));
+    sessionStorage.setItem('userLogged', true);
     history.push(pageToRedirect);
   };
 
   return (
-    <S.Overlay>
-      <S.PopupWrapper>
-        <S.WelcomeMessage>
-          Welcome to CodeLeap network!
-        </S.WelcomeMessage>
+    <Popup
+      open
+      closeOnDocumentClick={false}
+      closeOnEscape={false}
+    >
+      <CSSTransition
+        in={mount}
+        classNames='transition'
+        mountOnEnter
+        timeout={12000}
+      >
+        <S.PopupWrapper>
+          <S.WelcomeMessage>
+            Welcome to CodeLeap network!
+          </S.WelcomeMessage>
 
-        <S.LoginForm
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <S.Label
-            htmlFor='userName'
+          <S.LoginForm
+            onSubmit={handleSubmit(onSubmit)}
           >
-            Please enter your username
-          </S.Label>
-          <S.Input
-            type='text'
-            name='userName'
-            id='userName'
-            placeholder='John Doe'
-            ref={register({
-              required: true,
-            })}
-          />
+            <S.Label
+              htmlFor='userName'
+            >
+              Please enter your username
+            </S.Label>
+            <S.Input
+              type='text'
+              name='userName'
+              id='userName'
+              placeholder='John Doe'
+              ref={register({
+                required: true,
+              })}
+            />
 
-          <S.Submit
-            disabled={errors.userName || !watch('userName')}
-            title='Enter'
-          />
-        </S.LoginForm>
-      </S.PopupWrapper>
-    </S.Overlay>
+            <S.Submit
+              disabled={errors.userName || !watch('userName')}
+              title='Enter'
+              text='Enter'
+            />
+          </S.LoginForm>
+        </S.PopupWrapper>
+      </CSSTransition>
+    </Popup>
   );
 };
 

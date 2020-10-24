@@ -21,6 +21,11 @@ const btnStyle = css`
   text-transform: uppercase;
   font-weight: bold;
   background-color: ${({ theme }) => theme.colors.black};
+  transition: background-color 200ms ease-in-out;
+
+  &[disabled] {
+    background-color: grey;
+  }
 `;
 
 export const Wrapper = styled.button`

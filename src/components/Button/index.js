@@ -13,7 +13,7 @@ const Button = ({
     title={title}
     {...props}
   >
-    {text || title}
+    {text}
     {children}
   </S.Wrapper>
 );

@@ -3,21 +3,6 @@ import { rem } from 'polished';
 
 import Button from '@Components/Button';
 
-export const Overlay = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-
-  /** */
-  ${({ theme }) => css`
-  ${theme.flexCentered}
-    background-color: ${theme.colors.overlay};
-    z-index: ${theme.zIndexes.overlay};
-  `}
-`;
-
 export const PopupWrapper = styled.div`
   width: ${rem(500)};
   padding: ${rem(28)} ${rem(25)} ${rem(23)} ${rem(31)};
@@ -61,9 +46,4 @@ export const LoginForm = styled.form`
 
 export const Submit = styled(Button)`
   width: ${rem(111)};
-  transition: background-color 200ms ease-in-out;
-
-  &[disabled] {
-    background-color: grey;
-  }
 `;

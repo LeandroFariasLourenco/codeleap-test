@@ -3,6 +3,13 @@ import { rem } from 'polished';
 
 import Button from '@Components/Button';
 
+const commonInput = css`
+  width: 100%;
+  padding: ${rem(6)} ${rem(10)};
+  border: ${rem(1)} solid \#777;
+  border-radius: ${rem(4)};
+`;
+
 export const FormWrapper = styled.form`
   width: ${rem(720)};
   border: ${rem(1)} solid #999;
@@ -29,10 +36,12 @@ export const PostLabel = styled.label`
 `;
 
 export const PostInput = styled.input`
-  width: 100%;
-  padding: ${rem(6)} ${rem(10)};
-  border: ${rem(1)} solid #777;
-  border-radius: ${rem(4)};
+  ${commonInput}
+`;
+
+export const PostContent = styled.textarea`
+  ${commonInput}
+  height: ${rem(75)};
 `;
 
 export const Submit = styled(Button)`

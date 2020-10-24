@@ -5,12 +5,12 @@
       "@Components/*": ["./src/components/*"],
       "@Routes/*": ["./src/routes/*"],
       "@Pages/*": ["./src/pages/*"],
-      "@Utils/*": ["./src/utils/*"],
       "@Resources/*": ["./src/resources/*"],
       "@Redux/*": ["./src/redux/*"],
       "@Actions/*": ["./src/actions/*"],
       "@Style/*": ["./src/style/*"],
-      "@Constants/*": ["./src/constants/*"]
+      "@Constants/*": ["./src/constants/*"],
+      "@Icons/*": ["./src/icons/*"],
     }
   },
 }

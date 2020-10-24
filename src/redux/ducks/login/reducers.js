@@ -1,7 +1,8 @@
 import * as t from './types';
 
 const INITIAL_STATE = {
-  isLogged: false,
+  isLogged: !!sessionStorage.getItem('userLogged'),
+  userName: '',
 };
 
 export default function reducer(state = INITIAL_STATE, { type, payload }) {
@@ -9,7 +10,8 @@ export default function reducer(state = INITIAL_STATE, { type, payload }) {
   case t.SET_LOGIN:
     return {
       ...state,
-      isLogged: payload,
+      isLogged: payload.isLogged,
+      userName: payload.userName,
     };
   default:
     return state;

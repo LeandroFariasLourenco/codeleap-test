@@ -6,6 +6,7 @@ import * as S from './styled';
 
 const PostForm = ({
   title,
+  formHandler,
 }) => {
   const {
     errors,
@@ -19,12 +20,8 @@ const PostForm = ({
     },
   });
 
-  const onSubmit = ({ postTitle, postContent }) => {
-
-  };
-
   return (
-    <S.FormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <S.FormWrapper onSubmit={handleSubmit(formHandler)}>
       <S.Title>{title}</S.Title>
 
       <S.PostLabel htmlFor='postTitle'>Title</S.PostLabel>
@@ -32,23 +29,32 @@ const PostForm = ({
         type='text'
         id='postTitle'
         name='postTitle'
+        placeholder='Hello world'
         ref={register({
           required: true,
         })}
       />
 
       <S.PostLabel htmlFor='postContent'>Content</S.PostLabel>
-      <S.PostInput
+      <S.PostContent
         id='postContent'
         name='postContent'
         type='textarea'
+        placeholder='Content here'
         ref={register({
           required: true,
         })}
       />
 
       <S.Submit
+        disabled={
+          errors.postTitle
+          || errors.postContent
+          || !watch('postContent')
+          || !watch('postTitle')
+        }
         title='Create'
+        text='Create'
       />
     </S.FormWrapper>
   );
@@ -56,6 +62,7 @@ const PostForm = ({
 
 PostForm.propTypes = {
   title: PropTypes.string.isRequired,
+  formHandler: PropTypes.func.isRequired,
 };
 
 export default PostForm;

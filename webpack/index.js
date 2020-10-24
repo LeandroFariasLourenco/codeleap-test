@@ -14,17 +14,6 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: {
-      '@components/*': './src/components/*',
-      '@routes/*': path.resolve(__dirname, 'src', 'routes'),
-      '@pages/*': './src/pages/*',
-      '@Utils/*': './src/utils/*',
-      '@Resources/*': './src/resources/*',
-      '@Redux/*': './src/redux/*',
-      '@Actions/*': './src/actions/*',
-      '@Style/*': './src/style/*',
-      '@Constants/*': './src/constants/*',
-    },
   },
   module: {
     rules: [

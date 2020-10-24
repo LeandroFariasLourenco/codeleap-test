@@ -1,6 +1,6 @@
 import * as t from './types';
 
-export const setLogin = (state) => ({
+export const setLogin = (newState) => ({
   type: t.SET_LOGIN,
-  payload: state,
+  payload: newState,
 });
