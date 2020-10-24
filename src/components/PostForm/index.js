@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 
@@ -7,6 +7,7 @@ import * as S from './styled';
 const PostForm = ({
   title,
   formHandler,
+  buttonTitle,
 }) => {
   const {
     errors,
@@ -53,16 +54,21 @@ const PostForm = ({
           || !watch('postContent')
           || !watch('postTitle')
         }
-        title='Create'
-        text='Create'
+        title={buttonTitle}
+        text={buttonTitle}
       />
     </S.FormWrapper>
   );
 };
 
+PostForm.defaultProps = {
+  buttonTitle: 'Create',
+};
+
 PostForm.propTypes = {
   title: PropTypes.string.isRequired,
   formHandler: PropTypes.func.isRequired,
+  buttonTitle: PropTypes.string,
 };
 
-export default PostForm;
+export default memo(PostForm);

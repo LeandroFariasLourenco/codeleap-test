@@ -13,8 +13,8 @@
     "pug:lint": "pug-lint ./src",
     "linters": "yarn lint:js && yarn pug:lint",
     "server": "cross-env NODE_ENV=development && webpack-dev-server --watch --colors --open --config webpack.dev.js --env.ENVIROMENT=development",
-    "build": "webpack -m -p --colors --config webpack.prod.js --env.ENVIROMENT=production",
-    "clear": "rimraf ./dist"
+    "build": "cross-env NODE_ENV=production && webpack -m -p --colors --config webpack.prod.js",
+    "clear": "rimraf ./build"
   },
   "repository": {
     "type": "git",

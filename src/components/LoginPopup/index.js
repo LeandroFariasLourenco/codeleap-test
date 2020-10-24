@@ -40,6 +40,7 @@ const LoginPopup = ({
       userName,
     }));
     sessionStorage.setItem('userLogged', true);
+    sessionStorage.setItem('userName', userName);
     history.push(pageToRedirect);
   };
 

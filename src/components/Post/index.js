@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ReactComponent as EditIcon } from '@Icons/edit.svg';
 import { ReactComponent as TrashIcon } from '@Icons/trash.svg';
 
 import Button from '@Components/Button';
+import EditPopup from '@Components/EditPopup';
 
-import { deleteCareer } from '@Actions/requests/careers';
+// import { deleteCareer } from '@Actions/requests/careers';
 
 import * as S from './styled';
 
@@ -18,17 +19,19 @@ const Post = ({
   content,
   isEditable,
 }) => {
-  const handleEdit = () => {
+  const [editOpen, setEditOpen] = useState(false);
 
+  const handleEdit = () => {
+    setEditOpen(true);
   };
 
   const handleDelete = () => {
     /* eslint-disable no-alert */
-    const confirmDeletion = window.confirm('Are you sure you want to delete this item');
+    // const confirmDeletion = window.confirm('Are you sure you want to delete this item');
 
-    if (!confirmDeletion) return;
+    // if (!confirmDeletion) return;
 
-    deleteCareer(id).then(() => console.log('eae')).catch(console.log);
+    // deleteCareer(id).then(() => console.log('eae')).catch(console.log);
   };
 
   return (
@@ -38,31 +41,41 @@ const Post = ({
         {isEditable && (
           <S.IconsWrapper>
             <Button
+              title='Delete'
+              onClick={() => handleDelete()}
+            >
+              <TrashIcon />
+            </Button>
+
+            <Button
               title='Editar'
               onClick={() => handleEdit()}
             >
               <EditIcon />
             </Button>
-
-            <Button
-              title='Deletar'
-              onClick={() => handleDelete()}
-            >
-              <TrashIcon />
-            </Button>
           </S.IconsWrapper>
         )}
       </S.PostHeader>
 
-      <S.UserInfoWrapper>
-        <S.UserName>{username}</S.UserName>
-        <S.CreatedTime>{createdDate}</S.CreatedTime>
-      </S.UserInfoWrapper>
+      <S.PostBody>
+        <S.UserInfoWrapper>
+          <S.UserName>
+            @
+            {username}
+          </S.UserName>
+          <S.CreatedTime>{createdDate}</S.CreatedTime>
+        </S.UserInfoWrapper>
 
-      <S.PostContent>
-        {content}
-      </S.PostContent>
+        <S.PostContent>
+          {content}
+        </S.PostContent>
+      </S.PostBody>
 
+      <EditPopup
+        isOpen={editOpen}
+        handlePopupClose={() => setEditOpen(false)}
+        postId={id}
+      />
     </S.PostWrapper>
   );
 };
@@ -80,4 +93,4 @@ Post.propTypes = {
   isEditable: PropTypes.bool,
 };
 
-export default Post;
+export default memo(Post);

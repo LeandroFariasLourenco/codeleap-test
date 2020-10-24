@@ -2,7 +2,7 @@ import * as t from './types';
 
 const INITIAL_STATE = {
   isLogged: !!sessionStorage.getItem('userLogged'),
-  userName: '',
+  userName: sessionStorage.getItem('userName'),
 };
 
 export default function reducer(state = INITIAL_STATE, { type, payload }) {

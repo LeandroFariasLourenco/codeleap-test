@@ -37,7 +37,7 @@ export default createGlobalStyle`
 
   .popup-overlay {
     ${({ theme }) => css`
-      z-index: ${theme.zIndexes.overlay};
+      z-index: ${theme.zIndexes.overlay} !important;
       background-color: ${theme.colors.overlay};
     `}
   }

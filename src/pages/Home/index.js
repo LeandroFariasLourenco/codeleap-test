@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import { postCareer } from '@Actions/requests/careers';
 import PostForm from '@Components/PostForm';
-import PostList from '@Components/PostList';
+// import Post from '@Components/Post';
 
 import * as S from './styled';
 
@@ -23,11 +23,11 @@ const Home = () => {
       title: postTitle,
       content: postContent,
     }).then((e) => {
-      console.log(e);
+      // console.log(e);
       window.alert('The post was sucessfully created!');
       return e;
     }).catch((err) => {
-      console.warn(err);
+      // console.warn(err);
       window.alert('An error has ocurred... :( \n Please try again later');
       return err;
     })
@@ -50,9 +50,20 @@ const Home = () => {
           <PostForm
             title="What's on your mind?"
             formHandler={handleSubmit}
+            buttonTitle='Create'
           />
 
-          <PostList />
+          {/* {temporaryPosts.map((post) => (
+            <Post
+              key={post.id}
+              id={post.id}
+              username={post.username}
+              content={post.content}
+              createdDate={post.created_datetime}
+              isEditable={post.username === userName}
+              title={post.title}
+            />
+          ))} */}
         </S.HomeFeed>
       </CSSTransition>
     </S.HomeWrapper>

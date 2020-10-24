@@ -54,7 +54,7 @@ module.exports = {
     'react/jsx-filename-extension': [0],
     'import/prefer-default-export': 'off',
     'jsx-quotes': ['warn', 'prefer-single'],
-    'no-console': 'off',
+    'no-console': 'warn',
     'react/no-danger': 'off',
     'react/display-name': 'off',
     'react/jsx-props-no-spreading': 'off',

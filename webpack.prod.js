@@ -5,7 +5,7 @@ const config = require('./webpack');
 module.exports = merge(config, {
   mode: 'production',
   output: {
-    path: path.resolve('./dist'),
+    path: path.resolve('./build'),
     filename: `./js/${process.env.PROJECT_NAME}-index.js`,
     chunkFilename: `./js/${process.env.PROJECT_NAME}-vendor.js`,
     publicPath: '/',

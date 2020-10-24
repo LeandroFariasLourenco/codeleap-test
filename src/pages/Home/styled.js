@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { rem } from 'polished';
 
 export const HomeWrapper = styled.section`
-  height: 100vh;
+  min-height: 100vh;
 
   /** */
   ${({ theme }) => css`
@@ -14,6 +14,7 @@ export const HomeWrapper = styled.section`
 
 export const HomeFeed = styled.div`
   width: ${rem(800)};
+  padding-bottom: ${rem(20)};
 
   /** */
   ${({ theme }) => css`
@@ -24,7 +25,7 @@ export const HomeFeed = styled.div`
 `;
 
 export const HeadingBlock = styled.div`
-  padding: ${rem(27)} ${rem(37)};
+  padding: ${rem(27)} ${rem(36)};
   font-size: ${rem(22)};
   width: 100%;
   margin-bottom: ${rem(44)};

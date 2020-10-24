@@ -47,7 +47,7 @@ export const patchCareer = async (postId, post) => (
  * @param {Number} postId must be an integer
  * @description Will delete the specified post
  * @example deleteCareer(1)
- * @returns {undefined}
+ * @returns {Response}
  */
 export const deleteCareer = async (postId) => (
   client.patch(`/careers/${postId}`)
