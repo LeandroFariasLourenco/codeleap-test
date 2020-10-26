@@ -6,7 +6,7 @@ import client from '@Actions/requests/client';
  * @returns {Object}
  */
 export const getCareers = () => (
-  client.get('/careers')
+  client.get('/careers/')
     .then((response) => response)
     .catch((error) => error)
 );
@@ -22,7 +22,7 @@ export const getCareers = () => (
  * @returns {Response}
  */
 export const postCareer = async (post) => (
-  client.post('/careers', post)
+  client.post('/careers/', post)
     .then((response) => response)
     .catch((error) => error)
 );
@@ -38,7 +38,7 @@ export const postCareer = async (post) => (
  * @return {Response}
  */
 export const patchCareer = async (postId, post) => (
-  client.post(`/careers/${postId}`, post)
+  client.patch(`/careers/${postId}/`, post)
     .then((response) => response)
     .catch((error) => error)
 );
@@ -50,5 +50,7 @@ export const patchCareer = async (postId, post) => (
  * @returns {Response}
  */
 export const deleteCareer = async (postId) => (
-  client.patch(`/careers/${postId}`)
+  client.delete(`/careers/${postId}/`)
+    .then((response) => response)
+    .catch((error) => error)
 );

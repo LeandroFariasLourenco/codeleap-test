@@ -11,6 +11,7 @@
       "@Style/*": ["./src/style/*"],
       "@Constants/*": ["./src/constants/*"],
       "@Icons/*": ["./src/icons/*"],
+      "@Utils/*": ["./src/utils/*"],
     }
   },
 }

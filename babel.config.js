@@ -35,6 +35,7 @@ module.exports = {
         '@Actions': './src/actions',
         '@Constants': './src/constants',
         '@Icons': './src/icons',
+        '@Utils': './src/utils',
       },
     }],
   ],

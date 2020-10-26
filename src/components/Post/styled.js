@@ -47,6 +47,10 @@ export const UserName = styled.h3`
 
 export const CreatedTime = styled.span`
   ${commonText}
+
+  .is--zero {
+    display: none;
+  }
 `;
 
 export const IconsWrapper = styled.div`

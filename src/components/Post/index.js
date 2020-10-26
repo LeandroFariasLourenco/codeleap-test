@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import { ReactComponent as EditIcon } from '@Icons/edit.svg';
 import { ReactComponent as TrashIcon } from '@Icons/trash.svg';
@@ -7,7 +8,9 @@ import { ReactComponent as TrashIcon } from '@Icons/trash.svg';
 import Button from '@Components/Button';
 import EditPopup from '@Components/EditPopup';
 
-// import { deleteCareer } from '@Actions/requests/careers';
+import { deleteCareer } from '@Actions/requests/careers';
+
+import { getTime } from '@Utils/date';
 
 import * as S from './styled';
 
@@ -20,6 +23,12 @@ const Post = ({
   isEditable,
 }) => {
   const [editOpen, setEditOpen] = useState(false);
+  const {
+    type: dateType,
+    diff: dateDiff,
+  } = getTime({
+    postTime: createdDate,
+  });
 
   const handleEdit = () => {
     setEditOpen(true);
@@ -27,11 +36,16 @@ const Post = ({
 
   const handleDelete = () => {
     /* eslint-disable no-alert */
-    // const confirmDeletion = window.confirm('Are you sure you want to delete this item');
+    const confirmDeletion = window.confirm('Are you sure you want to delete this item');
 
-    // if (!confirmDeletion) return;
+    if (!confirmDeletion) return;
 
-    // deleteCareer(id).then(() => console.log('eae')).catch(console.log);
+    deleteCareer(id)
+      .then((response) => {
+        alert('The post was successfully deleted');
+        return response;
+      })
+      .catch((err) => (err));
   };
 
   return (
@@ -63,7 +77,17 @@ const Post = ({
             @
             {username}
           </S.UserName>
-          <S.CreatedTime>{createdDate}</S.CreatedTime>
+          <S.CreatedTime>
+            <span className={cx({ 'is--zero': !dateDiff })}>
+              {dateDiff}
+            </span>
+            {' '}
+            {dateType}
+            {' '}
+            <span className={cx({ 'is--zero': !dateDiff })}>
+              ago
+            </span>
+          </S.CreatedTime>
         </S.UserInfoWrapper>
 
         <S.PostContent>

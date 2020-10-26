@@ -1,7 +1,6 @@
 require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashPlugin = require('lodash-webpack-plugin');
-const path = require('path');
 
 module.exports = {
   entry: `${process.env.SRC}${process.env.PROJECT_NAME}-index.js`,
