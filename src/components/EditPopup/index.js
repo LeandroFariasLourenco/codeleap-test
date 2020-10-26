@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import PostForm from '@Components/PostForm';
 
+import { patchCareer } from '@Actions/requests/careers';
+
 import './style.scss';
 
 const EditPopup = ({
@@ -12,9 +14,18 @@ const EditPopup = ({
   postId,
 }) => {
   const [popupOpen, setPopupOpen] = useState(isOpen);
-  // const handleSubmit = ({ postTitle, postContent }) => {
-  const handleSubmit = () => {
-
+  const handleSubmit = ({ postTitle, postContent }) => {
+    /* eslint-disable no-alert */
+    patchCareer(postId, {
+      title: postTitle,
+      content: postContent,
+    })
+      .then((response) => {
+        alert('The post was successfully updated :)');
+        window.location.reload();
+        return response;
+      })
+      .catch((err) => err);
   };
 
   useEffect(() => {
@@ -32,7 +43,6 @@ const EditPopup = ({
         formHandler={handleSubmit}
         buttonTitle='Save'
       />
-      {postId}
     </Popup>
   );
 };

@@ -43,6 +43,7 @@ const Post = ({
     deleteCareer(id)
       .then((response) => {
         alert('The post was successfully deleted');
+        window.location.reload();
         return response;
       })
       .catch((err) => (err));
