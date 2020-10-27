@@ -12,6 +12,8 @@ const EditPopup = ({
   isOpen,
   handlePopupClose,
   postId,
+  title,
+  content,
 }) => {
   const [popupOpen, setPopupOpen] = useState(isOpen);
   const handleSubmit = ({ postTitle, postContent }) => {
@@ -42,6 +44,8 @@ const EditPopup = ({
         title='Edit item'
         formHandler={handleSubmit}
         buttonTitle='Save'
+        formTitle={title}
+        formContent={content}
       />
     </Popup>
   );
@@ -51,6 +55,13 @@ EditPopup.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handlePopupClose: PropTypes.func.isRequired,
   postId: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  content: PropTypes.string,
+};
+
+EditPopup.defaultProps = {
+  title: '',
+  content: '',
 };
 
 export default memo(EditPopup);
