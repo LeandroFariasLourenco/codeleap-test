@@ -1,15 +1,15 @@
 module.exports = {
   presets: [
     '@babel/preset-env',
-    '@babel/preset-react'
+    '@babel/preset-react',
   ],
   env: {
     development: {
       plugins: [
         ['styled-components', {
-          displayName: true
-        }]
-      ]
+          displayName: true,
+        }],
+      ],
     },
     production: {
       plugins: [
@@ -17,29 +17,26 @@ module.exports = {
         '@babel/plugin-transform-react-inline-elements',
         'transform-react-remove-prop-types',
         ['styled-components', {
-          displayName: false
-        }]
-      ]
-    }
+          displayName: false,
+        }],
+      ],
+    },
   },
   plugins: [
     '@babel/plugin-proposal-optional-chaining',
     ['module-resolver', {
       root: ['./'],
       alias: {
-        '@Components': './src/js/Components',
-        '@Images': './src/Images',
-        '@Icons': './src/Icons',
-        '@Routes': './src/js/Routes',
-        '@Global': './src/js/Global',
-        '@Pages': './src/js/Pages',
-        '@Styles': './src/js/Styles',
-        '@Layouts': './src/js/Layouts',
-        '@Utils': './src/js/Utils',
-        '@Resources': './src/js/Resources',
-        '@Store': './src/js/Store',
-        '@Requests': './src/js/Requests'
-      }
-    }]
-  ]
+        '@Components': './src/components',
+        '@Routes': './src/routes',
+        '@Pages': './src/pages',
+        '@Style': './src/style',
+        '@Redux': './src/redux',
+        '@Actions': './src/actions',
+        '@Constants': './src/constants',
+        '@Icons': './src/icons',
+        '@Utils': './src/utils',
+      },
+    }],
+  ],
 };

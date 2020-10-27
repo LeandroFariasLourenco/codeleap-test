@@ -1,5 +1,5 @@
 const { merge } = require('webpack-merge');
-const config = require('./webpack/config');
+const config = require('./webpack');
 
 module.exports = merge(config, {
   mode: 'development',
@@ -9,9 +9,9 @@ module.exports = merge(config, {
     liveReload: true,
     contentBase: './dist',
     historyApiFallback: {
-      index: '/'
+      index: '/',
     },
-    index: `./views/${process.env.PROJECT_NAME}-index.html`,
+    index: './index.html',
     stats: {
       colors: true,
       hash: false,
@@ -26,7 +26,7 @@ module.exports = merge(config, {
       errors: true,
       errorDetails: true,
       warnings: true,
-      publicPath: false
-    }
-  }
+      publicPath: false,
+    },
+  },
 });
