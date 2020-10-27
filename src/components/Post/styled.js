@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { rem } from 'polished';
 
+import { Wrapper } from '@Components/Button/styled';
+
 const commonText = css`
   color: \#777;
   font-size: ${rem(18)};
@@ -9,6 +11,11 @@ const commonText = css`
 export const PostWrapper = styled.div`
   width: 100%;
   padding: ${rem(27)} ${rem(36)};
+
+  /** */
+  ${({ theme }) => theme.mq.lessThan('sm')`
+    padding: ${rem(10)} ${rem(10)};
+  `}
 `;
 
 export const PostBody = styled.div`
@@ -19,6 +26,11 @@ export const PostBody = styled.div`
 export const PostHeader = styled.div`
   display: flex;
   justify-content: space-around;
+
+  /** */
+  ${({ theme }) => theme.mq.lessThan('sm')`
+    flex-flow: column;
+  `}
 `;
 
 export const PostTitle = styled.h2`
@@ -55,6 +67,15 @@ export const CreatedTime = styled.span`
 
 export const IconsWrapper = styled.div`
   display: flex;
+
+  /** */
+  ${({ theme }) => theme.mq.lessThan('sm')`
+    width: 100%;
+
+    ${Wrapper} {
+      flex: 1;
+    }
+  `}
 `;
 
 export const PostContent = styled.div`

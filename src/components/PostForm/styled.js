@@ -22,6 +22,12 @@ export const FormWrapper = styled.form`
     ${theme.flexJustify};
     align-items: flex-end;
     flex-flow: column;
+
+    ${theme.mq.lessThan('sm')`
+      width: 95%;
+      margin-right: ${rem(10)};
+      margin-left: ${rem(10)};
+    `}
   `}
 `;
 

@@ -21,5 +21,9 @@ export const HomeFeed = styled.div`
     background-color: ${theme.colors.white};
     ${theme.flexCentered};
     flex-flow: column;
+
+    ${theme.mq.lessThan('sm')`
+      width: 100%;
+    `}
   `}
 `;
