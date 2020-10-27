@@ -99,6 +99,8 @@ const Post = ({
       <EditPopup
         isOpen={editOpen}
         handlePopupClose={() => setEditOpen(false)}
+        content={content}
+        title={title}
         postId={id}
       />
     </S.PostWrapper>

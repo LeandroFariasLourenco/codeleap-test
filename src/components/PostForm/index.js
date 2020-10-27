@@ -8,6 +8,8 @@ const PostForm = ({
   title,
   formHandler,
   buttonTitle,
+  formTitle,
+  formContent,
 }) => {
   const {
     errors,
@@ -16,8 +18,8 @@ const PostForm = ({
     register,
   } = useForm({
     defaultValues: {
-      postTitle: '',
-      postContent: '',
+      postTitle: formTitle,
+      postContent: formContent,
     },
   });
 
@@ -63,9 +65,13 @@ const PostForm = ({
 
 PostForm.defaultProps = {
   buttonTitle: 'Create',
+  formContent: '',
+  formTitle: '',
 };
 
 PostForm.propTypes = {
+  formTitle: PropTypes.string,
+  formContent: PropTypes.string,
   title: PropTypes.string.isRequired,
   formHandler: PropTypes.func.isRequired,
   buttonTitle: PropTypes.string,
