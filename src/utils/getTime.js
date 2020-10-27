@@ -1,3 +1,10 @@
+/**
+ * @param {Date} currentTime
+ * @param {Date} postTime
+ * @description
+ *  Will return an object containing the post time and type depending on hours/min/mon/year
+ * @returns {Object}
+ */
 export const getTime = ({
   currentTime = new Date(),
   postTime,
@@ -58,3 +65,5 @@ export const getTime = ({
     diff,
   };
 };
+
+export default getTime;

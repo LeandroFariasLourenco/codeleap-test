@@ -1,46 +1,67 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
+import FlatList from 'flatlist-react';
 
-import { postCareer, getCareers } from '@Actions/requests/careers';
-import PostForm from '@Components/PostForm';
+import { getCareers } from '@Actions/requests/careers';
+import { setHasNewPost } from '@Actions/dispatches/home';
+
 import Post from '@Components/Post';
+import HomeHeading from '@Components/HomeHeading';
 
 import * as S from './styled';
 
 const Home = () => {
   const { userName } = useSelector((state) => state.login);
-  const [postList, setPostList] = useState([]);
   const [mount, setMount] = useState(false);
-  const [hasNewPost, setHasNewPost] = useState(false);
+
+  const [postList, setPostList] = useState([]);
+  const [nextData, setNextData] = useState('');
+  const [isLoadingData, setIsLoadingData] = useState(false);
+
+  const { hasNewPost } = useSelector((state) => state.home);
+  const dispatch = useDispatch();
+
+  const handleEndReached = () => {
+    if (!isLoadingData) return;
+
+    getCareers(nextData)
+      .then((result) => {
+        const { results, next } = result.data;
+        setPostList([...postList, ...results]);
+        setNextData(next || '');
+
+        return result;
+      })
+      .catch((err) => err);
+  };
+
+  const handleEmpty = () => {
+    const isListEmpty = !postList.length;
+    if (isListEmpty && isLoadingData) {
+      return <span>Loading list...</span>;
+    }
+
+    return <span>No posts have been found</span>;
+  };
 
   useEffect(() => {
     setMount(true);
+    setIsLoadingData(true);
+
     getCareers()
       .then((result) => {
         setPostList(result.data.results);
+        setNextData(result.data.next);
+        setIsLoadingData(false);
         return result;
       })
       .catch((err) => err);
 
-    setHasNewPost(false);
-  }, [hasNewPost]);
-
-  const handleSubmit = async ({ postTitle, postContent }) => (
-    /* eslint-disable no-alert */
-    postCareer({
-      username: userName,
-      title: postTitle,
-      content: postContent,
-    }).then((response) => {
-      window.alert('The post was sucessfully created!');
-      setHasNewPost(true);
-      return response;
-    }).catch((err) => {
-      window.alert('An error has ocurred... :( \n Please try again later');
-      return err;
-    })
-  );
+    return () => {
+      dispatch(setHasNewPost(false));
+    };
+  }, [hasNewPost, dispatch]);
 
   return (
     <S.HomeWrapper>
@@ -50,29 +71,26 @@ const Home = () => {
         mountOnEnter
         timeout={12000}
       >
-
         <S.HomeFeed>
-          <S.HeadingBlock>
-            <S.Title>CodeLeap Network</S.Title>
-          </S.HeadingBlock>
+          <HomeHeading />
 
-          <PostForm
-            title="What's on your mind?"
-            formHandler={handleSubmit}
-            buttonTitle='Create'
+          <FlatList
+            list={postList}
+            renderItem={(post) => (
+              <Post
+                key={post.id}
+                id={post.id}
+                username={post.username}
+                content={post.content}
+                createdDate={new Date(post.created_datetime)}
+                isEditable={post.username === userName}
+                title={post.title}
+              />
+            )}
+            renderWhenEmpty={() => handleEmpty()}
+            loadMoreItems={() => handleEndReached()}
+            hasMoreItems={!!nextData}
           />
-
-          {postList.map((post) => (
-            <Post
-              key={post.id}
-              id={post.id}
-              username={post.username}
-              content={post.content}
-              createdDate={new Date(post.created_datetime)}
-              isEditable={post.username === userName}
-              title={post.title}
-            />
-          ))}
         </S.HomeFeed>
       </CSSTransition>
     </S.HomeWrapper>

@@ -10,7 +10,7 @@ import EditPopup from '@Components/EditPopup';
 
 import { deleteCareer } from '@Actions/requests/careers';
 
-import { getTime } from '@Utils/date';
+import { getTime } from '@Utils';
 
 import * as S from './styled';
 

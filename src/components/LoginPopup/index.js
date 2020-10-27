@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 
-import { setLogin } from '@Redux/ducks/login';
+import { setLogin } from '@Actions/dispatches/login';
 
 import { PATHS } from '@Constants';
 

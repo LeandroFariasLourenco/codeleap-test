@@ -1,15 +1,17 @@
 import client from '@Actions/requests/client';
+import axios from 'axios';
 
 /**
+ * @param {String} params
  * @description Returns all careers
  * @example const careers = getCareers();
  * @returns {Object}
  */
-export const getCareers = () => (
-  client.get('/careers/')
-    .then((response) => response)
-    .catch((error) => error)
-);
+export const getCareers = (pathName = '') => (!pathName
+  ? client.get('/careers/')
+  : axios.get(pathName))
+  .then((response) => response)
+  .catch((error) => error);
 
 /**
  * @param {Object} post
