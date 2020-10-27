@@ -44,6 +44,14 @@ export const getTime = ({
       diff,
     };
   }
+  if (current.day > post.day) {
+    diff = current.day - post.day;
+
+    return {
+      type: pluralize('day', diff),
+      diff,
+    };
+  }
   if (current.hours > post.hours) {
     diff = current.hours - post.hours;
 
