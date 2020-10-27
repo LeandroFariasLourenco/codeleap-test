@@ -12,6 +12,15 @@ export const PopupWrapper = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.white};
     z-index: ${theme.zIndexes.popup};
+
+    ${theme.mq.lessThan('sm')`
+      width: 90%;
+      margin: 0 auto;
+      height: ${rem(300)};
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+    `}
   `}
 `;
 
